@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BillSplitterApp.MainPage"
+             Title="Bill Splitter"
+             BackgroundColor="#F5F7F2">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,18,20,30" Spacing="16">
+
+            <Label Text="Bill Splitter" FontSize="32" FontAttributes="Bold" TextColor="#183A2A"/>
+            <Label Text="Split a bill in seconds" FontSize="16" TextColor="#637066"/>
+
+            <Border Stroke="#D9E1D9" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 18" Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Receipt" FontSize="18" FontAttributes="Bold" TextColor="#183A2A"/>
+                    <Image x:Name="ReceiptImage" HeightRequest="150" Aspect="AspectFit" IsVisible="False"/>
+                    <Button Text="📷  Take photo of bill" Clicked="OnTakePhotoClicked"
+                            BackgroundColor="#24543C" TextColor="White" CornerRadius="14" HeightRequest="52" FontAttributes="Bold"/>
+                    <Label x:Name="ReceiptStatus" Text="Photo capture ready" FontSize="13" TextColor="#637066"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Stroke="#D9E1D9" StrokeThickness="1" BackgroundColor="White" StrokeShape="RoundRectangle 18" Padding="16">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Bill details" FontSize="18" FontAttributes="Bold" TextColor="#183A2A"/>
+
+                    <Label Text="Bill total (N$)" FontSize="14" TextColor="#637066"/>
+                    <Entry x:Name="TotalEntry" Placeholder="0.00" Keyboard="Numeric" TextChanged="OnInputChanged"
+                           FontSize="22" BackgroundColor="#F5F7F2"/>
+
+                    <Label Text="Number of people" FontSize="14" TextColor="#637066"/>
+                    <Stepper x:Name="PeopleStepper" Minimum="1" Maximum="30" Value="2" ValueChanged="OnInputChanged"/>
+                    <Label x:Name="PeopleLabel" Text="2 people" FontSize="17" FontAttributes="Bold" TextColor="#24543C"/>
+
+                    <Label Text="Tip" FontSize="14" TextColor="#637066"/>
+                    <HorizontalStackLayout Spacing="8">
+                        <Button Text="0%" CommandParameter="0" Clicked="OnTipClicked" BackgroundColor="#E4ECE5" TextColor="#183A2A" CornerRadius="12"/>
+                        <Button Text="10%" CommandParameter="10" Clicked="OnTipClicked" BackgroundColor="#E4ECE5" TextColor="#183A2A" CornerRadius="12"/>
+                        <Button Text="15%" CommandParameter="15" Clicked="OnTipClicked" BackgroundColor="#E4ECE5" TextColor="#183A2A" CornerRadius="12"/>
+                        <Button Text="20%" CommandParameter="20" Clicked="OnTipClicked" BackgroundColor="#E4ECE5" TextColor="#183A2A" CornerRadius="12"/>
+                    </HorizontalStackLayout>
+                    <Entry x:Name="CustomTipEntry" Placeholder="Custom tip % (optional)" Keyboard="Numeric" TextChanged="OnInputChanged"
+                           BackgroundColor="#F5F7F2"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="#183A2A" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="20">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="TOTAL" FontSize="13" TextColor="#C9D9CD" FontAttributes="Bold"/>
+                    <Label x:Name="GrandTotalLabel" Text="N$ 0.00" FontSize="32" TextColor="White" FontAttributes="Bold"/>
+                    <BoxView HeightRequest="1" Color="#456451"/>
+                    <Label Text="Each person pays" FontSize="14" TextColor="#C9D9CD"/>
+                    <Label x:Name="PerPersonLabel" Text="N$ 0.00" FontSize="28" TextColor="White" FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Reset" Clicked="OnResetClicked" BackgroundColor="Transparent" TextColor="#24543C" HeightRequest="48"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
